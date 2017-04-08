@@ -1,0 +1,144 @@
+<!DOCTYPE div PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Student Registration Form</title>
+    <link src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <style type="text/css">
+        body {
+            background-color: #eee;
+        }
+        
+        *[role="form"] {
+            max-width: 530px;
+            padding: 15px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 0.3em;
+        }
+        
+        *[role="form"] h2 {
+            margin-left: 5em;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="container">
+        <form class="form-horizontal" id="form1" role="form">
+            <h1>Student Registration Form</h1>
+            <div class="form-group">
+                <label for="firstName" class="col-sm-3 control-label">Full Name</label>
+                <div class="col-sm-9">
+                    <input type="text" id="firstName" placeholder="Full Name" ng-model="dataObj.studentFirstName" class="form-control" autofocus>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="firstName" class="col-sm-3 control-label">Middle Name</label>
+                <div class="col-sm-9">
+                    <input type="text" id="firstName" placeholder="Middle Name" ng-model="dataObj.studentMiddleName" class="form-control" autofocus>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="firstName" class="col-sm-3 control-label">Last Name</label>
+                <div class="col-sm-9">
+                    <input type="text" id="firstName" placeholder="Last Name" ng-model="dataObj.studentLastName" class="form-control" autofocus>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email" id="email" ng-model="dataObj.studentEmail" placeholder="Email (optional)" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">Mobile Number</label>
+                <div class="col-sm-9">
+                    <input type="number" id="email" placeholder="Mobile Number (optional)" ng-model="dataObj.studentMobileNumber" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-3 control-label">Identification-1</label>
+                <div class="col-sm-9">
+                    <textarea type="text" id="password" placeholder="identification Mark-1" ng-model="dataObj.identifcation1" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-3 control-label">Identification-1</label>
+                <div class="col-sm-9">
+                    <textarea type="text" id="password" placeholder="identification Mark-2" ng-model="dataObj.identifcation2" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
+                <div class="col-sm-9">
+                    <input type="date" id="birthDate" ng-model="dataObj.studentDOB" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Gender</label>
+                <div class="col-md-9">
+                    <label class="radio-inline" for="Training-0">
+                        <input type="radio" name="Training" id="Training-0" ng-model="dataObj.MALE" checked="checked"> Male
+                    </label>
+                    <label class="radio-inline" for="Training-1">
+                        <input type="radio" name="Training" id="Training-1" ng-model="dataObj.FEMALE"> Female
+                    </label>
+                    <label class="radio-inline" for="Training-2">
+                        <input type="radio" name="Training" id="Training-1" ng-model="dataObj.OTHERS"> Others
+                    </label>
+                </div>
+            </div>
+            <!-- /.form-group -->
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">I accept <a href="#">terms</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- /.form-group -->
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <button type="submit" class="btn btn-primary btn-block" ng-click="res(dataObj)">Register</button>
+                </div>
+            </div>
+        </form>
+        <!-- /form -->
+    </div>
+    <!-- ./container -->
+</body>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$http) {
+    var dataObj = {
+			studentFirstName : $scope.studentFirstName,
+			studentLastName : $scope.studentLastName,
+			studentMiddleName : $scope.studentMiddleName,
+			studentDOB:$scope.studentDOB,
+			Identification1:$scope.identifcation1,
+			Identification2:$scope.identifcation2,
+			studentMobileNumber:$scope.studentMobileNumber
+	};
+    $scope.res = function(data){
+    	console.log(data);
+    	$http.post('http://localhost:8080/student/register', JSON.stringify(data)).then(function(response){
+    		alert()
+    	});
+    }
+    
+    
+});
+</script>
+
+
+
+
+</html>
